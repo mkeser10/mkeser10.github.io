@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karanlığın Sorusu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Başlangıç Ekranı -->
+    <div id="start-screen" class="screen active">
+        <div class="container">
+            <h1 class="game-title">KARANLIĞIN SORUSU</h1>
+            <p class="subtitle">Karanlık köyde hayatta kalabilecek misin?</p>
+            <button id="start-btn" class="btn-primary">BAŞLA</button>
+        </div>
+    </div>
+
+    <!-- Oyun Ekranı -->
+    <div id="game-screen" class="screen">
+        <div class="game-ui">
+            <div class="top-bar">
+                <div class="timer-container">
+                    <span class="timer-label">Süre:</span>
+                    <span id="timer">15</span>
+                </div>
+                <div class="lives-container">
+                    <span class="lives-label">Can:</span>
+                    <div id="lives">
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                        <span class="heart">❤️</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="level-info">
+                    <span id="current-level">1</span> / 50
+                </div>
+                <div class="story-text" id="story-text">
+                    Babaannenin eski evine vardığında, kapı hafifçe aralık duruyordu. İçeriden garip sesler geliyordu...
+                </div>
+                <div class="question-text" id="question-text">
+                    Ne yaparsın?
+                </div>
+                <div class="choices">
+                    <button id="choice-a" class="choice-btn">A) İçeri girerim</button>
+                    <button id="choice-b" class="choice-btn">B) Geri dönerim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sonuç Ekranı -->
+    <div id="end-screen" class="screen">
+        <div class="container">
+            <h2 id="end-title">OYUN BİTTİ</h2>
+            <p id="end-message">Sonuç mesajı buraya gelecek...</p>
+            <div class="end-buttons">
+                <button id="restart-btn" class="btn-primary">TEKRAR OYNA</button>
+                <button id="exit-btn" class="btn-secondary">ÇIKIŞ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ses Efektleri -->
+    <audio id="background-audio" loop>
+        <!-- Arkaplan sesi buraya gelecek -->
+    </audio>
+    <audio id="wrong-audio">
+        <!-- Yanlış cevap sesi -->
+    </audio>
+    <audio id="ghost-audio">
+        <!-- Hayalet yakalama sesi -->
+    </audio>
+    <audio id="correct-audio">
+        <!-- Doğru cevap sesi -->
+    </audio>
+
+    <script src="game_data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

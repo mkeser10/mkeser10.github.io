@@ -1,0 +1,544 @@
+/* Genel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Ekran Geçişleri */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.screen.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Başlangıç Ekranı */
+#start-screen {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/haunted_house.jpg');
+    animation: fadeIn 2s ease-in;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0,0,0,0.8);
+    border-radius: 15px;
+    border: 2px solid #8B0000;
+    box-shadow: 0 0 30px rgba(139,0,0,0.5);
+}
+
+.game-title {
+    font-size: 3.5rem;
+    color: #8B0000;
+    text-shadow: 3px 3px 6px #000;
+    margin-bottom: 1rem;
+    letter-spacing: 3px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+/* Butonlar */
+.btn-primary {
+    background: linear-gradient(45deg, #8B0000, #DC143C);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 5px 15px rgba(139,0,0,0.4);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #DC143C, #FF6347);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139,0,0,0.6);
+}
+
+.btn-secondary {
+    background: #333;
+    color: white;
+    border: 2px solid #666;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.btn-secondary:hover {
+    background: #555;
+    border-color: #888;
+}
+
+/* Oyun Ekranı */
+#game-screen {
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/spooky_forest.jpg');
+    flex-direction: column;
+    padding: 0;
+}
+
+.game-ui {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Üst Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(0,0,0,0.9);
+    border-bottom: 2px solid #8B0000;
+}
+
+.timer-container, .lives-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.timer-label, .lives-label {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+#timer {
+    font-size: 2rem;
+    color: #FF6347;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000;
+    min-width: 50px;
+    text-align: center;
+}
+
+.heart {
+    font-size: 1.5rem;
+    margin: 0 2px;
+    filter: drop-shadow(2px 2px 4px #000);
+}
+
+/* Soru Konteyner */
+.question-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.level-info {
+    font-size: 1.1rem;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.story-text {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 800px;
+    background: rgba(0,0,0,0.7);
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 4px solid #8B0000;
+}
+
+.question-text {
+    font-size: 1.6rem;
+    color: #FFD700;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+/* Seçenekler */
+.choices {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.choice-btn {
+    background: linear-gradient(135deg, #2C2C2C, #1C1C1C);
+    color: white;
+    border: 2px solid #555;
+    padding: 20px 40px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 250px;
+    text-align: left;
+}
+
+.choice-btn:hover {
+    background: linear-gradient(135deg, #8B0000, #DC143C);
+    border-color: #FF6347;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(139,0,0,0.4);
+}
+
+/* Sonuç Ekranı */
+#end-screen {
+    background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('images/abandoned_house.png');
+}
+
+#end-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 6px #000;
+}
+
+#end-message {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+.end-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes glow {
+    from { text-shadow: 3px 3px 6px #000, 0 0 10px #8B0000; }
+    to { text-shadow: 3px 3px 6px #000, 0 0 20px #DC143C, 0 0 30px #DC143C; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes flash {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: rgba(255, 0, 0, 0.3); }
+}
+
+/* Efekt Sınıfları */
+.wrong-answer {
+    animation: flash 0.5s ease-in-out;
+}
+
+.ghost-caught {
+    animation: shake 0.5s ease-in-out;
+    background: radial-gradient(circle, rgba(0,0,0,0.9), rgba(139,0,0,0.3));
+}
+
+.timer-warning {
+    color: #FF0000 !important;
+    animation: glow 0.5s ease-in-out infinite alternate;
+}
+
+/* Kalp Animasyonları */
+.heart-lost {
+    animation: heartBreak 0.5s ease-in-out;
+}
+
+@keyframes heartBreak {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2) rotate(10deg); }
+    100% { transform: scale(0.8) rotate(-5deg); }
+}
+
+.heart-pulse {
+    animation: heartPulse 1s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Seviye Atlama Efektleri */
+.level-up-glow {
+    animation: levelUpGlow 2s ease-in-out;
+}
+
+@keyframes levelUpGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 50px rgba(255, 215, 0, 0.8); }
+}
+
+/* Skor Animasyonu */
+.score-popup {
+    position: absolute;
+    color: #00FF00;
+    font-size: 1.5rem;
+    font-weight: bold;
+    pointer-events: none;
+    animation: scoreFloat 1s ease-out forwards;
+}
+
+@keyframes scoreFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+/* Hayalet Efekti */
+.ghost-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.9) 70%);
+    pointer-events: none;
+    animation: ghostAppear 2s ease-in-out;
+    z-index: 999;
+}
+
+@keyframes ghostAppear {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 0; transform: scale(1); }
+}
+
+/* Yüksek Skor Gösterimi */
+.high-score-display {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.8);
+    color: #FFD700;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #8B0000;
+    font-size: 0.9rem;
+    animation: fadeIn 1s ease-in;
+}
+
+/* Zorluk Göstergesi */
+.difficulty-indicator {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(139,0,0,0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    border: 1px solid #FF6347;
+}
+
+/* Mobil Uyumluluk - Geliştirilmiş */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .top-bar {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .timer-container, .lives-container {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    #timer {
+        font-size: 1.8rem;
+    }
+    
+    .question-container {
+        padding: 20px 15px;
+    }
+    
+    .story-text {
+        font-size: 1.1rem;
+        padding: 20px 15px;
+        margin-bottom: 25px;
+    }
+    
+    .question-text {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+    }
+    
+    .choices {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .choice-btn {
+        min-width: auto;
+        width: 100%;
+        padding: 18px 25px;
+        font-size: 1.1rem;
+        text-align: center;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-primary {
+        padding: 18px 35px;
+        font-size: 1.2rem;
+        min-height: 55px;
+    }
+    
+    .end-buttons {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .btn-secondary {
+        width: 100%;
+        padding: 15px 30px;
+        margin-left: 0;
+    }
+    
+    .container {
+        margin: 20px;
+        padding: 1.5rem;
+    }
+    
+    #end-title {
+        font-size: 2.2rem;
+    }
+    
+    #end-message {
+        font-size: 1.2rem;
+    }
+    
+    .high-score-display {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 10px auto;
+        display: block;
+        text-align: center;
+        width: fit-content;
+    }
+}
+
+/* Çok küçük ekranlar için */
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .story-text {
+        font-size: 1rem;
+        padding: 15px;
+    }
+    
+    .question-text {
+        font-size: 1.2rem;
+    }
+    
+    .choice-btn {
+        font-size: 1rem;
+        padding: 15px 20px;
+        min-height: 55px;
+    }
+    
+    .top-bar {
+        padding: 10px 15px;
+    }
+    
+    #timer {
+        font-size: 1.5rem;
+    }
+    
+    .heart {
+        font-size: 1.3rem;
+    }
+}
+
+/* Dokunmatik cihazlar için hover efektlerini devre dışı bırak */
+@media (hover: none) and (pointer: coarse) {
+    .choice-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .btn-primary:hover {
+        transform: none;
+        box-shadow: 0 5px 15px rgba(139,0,0,0.4);
+    }
+    
+    .btn-secondary:hover {
+        background: #333;
+        border-color: #666;
+    }
+}
+
+/* Aktif dokunma efektleri */
+.choice-btn:active {
+    transform: scale(0.98);
+    background: linear-gradient(135deg, #8B0000, #DC143C);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary:active {
+    transform: scale(0.98);
+    background: #555;
+}
+
