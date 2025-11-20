@@ -542,3 +542,17 @@ body {
     background: #555;
 }
 
+.level-image-container {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#level-image {
+    width: 80%;
+    max-width: 350px;
+    border-radius: 10px;
+    border: 2px solid #8B0000;
+    box-shadow: 0 0 20px rgba(139,0,0,0.5);
+}
+
