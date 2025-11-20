@@ -555,4 +555,11 @@ body {
     border: 2px solid #8B0000;
     box-shadow: 0 0 20px rgba(139,0,0,0.5);
 }
+#level-image {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 20px auto;
+}
+
 
