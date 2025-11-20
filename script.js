@@ -50,3 +50,11 @@ function loadQuestion() {
     // Level görseli ve arkaplanı güncelle
     updateLevelVisuals();
 }
+function updateLevelImage(level) {
+  const imageElement = document.getElementById("level-image");
+  imageElement.src = `images/level${level}.png`;
+}
+
+// Level 1 başladığında bu satırı çağır:
+updateLevelImage(1);
+
